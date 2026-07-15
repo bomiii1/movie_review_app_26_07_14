@@ -12,6 +12,8 @@ html,
 body,
 #root {
   height: 100%;
+  background-color: black;
+  color: white;
 }
 
 /* 기본 body 설정 */

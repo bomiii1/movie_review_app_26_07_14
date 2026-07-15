@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import {
   getNowPlaying,
@@ -46,7 +47,8 @@ export default function Home() {
     })();
   }, []);
 
-  console.log(movieData);
+  console.log(movieData?.nowPlaying?.response?.results[0].title);
+  console.log(movieData?.nowPlaying?.response?.results[0].overview);
 
   // console.log(`현재 상영 영화 : ` + nowData);
   // console.log(`인기 영화 : ` + popData);
@@ -80,5 +82,33 @@ export default function Home() {
   //   // </>
   // );
 
-  return <div>home</div>;
+  return (
+    <div className="min-h-screen">
+      <section
+        style={{
+          background: `#808080 url(https://image.tmdb.org/t/p/original${movieData?.nowPlaying?.response?.results[0].backdrop_path}) no-repeat center / cover`,
+        }}
+        className="h-[80vh] px-[20px] lg:px-[80px] xl:px-[200px] py-6 relative"
+      >
+        <div className="absolute bottom-[100px] left-[20px] lg:left-[80px] xl:left-[200px]">
+          <h3 className="text-[30px] lg:text-[50px] xl:text-[70px] font-semibold">
+            {movieData?.nowPlaying?.response?.results[0].title}
+          </h3>
+          <p className="text-[14px]  xl:text-[18px] opacity-70 max-w-[800px] mt-4 mb-10">
+            {movieData?.nowPlaying?.response?.results[0].overview.slice(
+              0,
+              100,
+            ) + "..."}
+          </p>
+
+          <Link
+            to={`/movie/${movieData?.nowPlaying?.response?.results[0].id}`}
+            className="px-8 py-4 bg-red-500 rounded-lg hover:bg-red-700 transition"
+          >
+            MORE VIEW &rarr;
+          </Link>
+        </div>
+      </section>
+    </div>
+  );
 }

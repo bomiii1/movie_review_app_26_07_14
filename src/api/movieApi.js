@@ -8,7 +8,7 @@ const options = {
 };
 
 const fetchMovie = async (endpoint) => {
-  const url = baseUrl + endpoint + "?language=en-US&page=1";
+  const url = baseUrl + endpoint + "?language=ko-kr&page=1";
 
   const response = await fetch(url, options).then((res) => res.json());
   // .then((json) => console.log(json))
