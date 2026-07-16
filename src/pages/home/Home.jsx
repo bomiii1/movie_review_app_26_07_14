@@ -8,6 +8,10 @@ import {
 } from "../../api/movieApi";
 import Section_1 from "./components/Section_1";
 import Loading from "../../components/Loading";
+import { W500_URL } from "../../constants/imgBaseUrl";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import Section_2 from "./components/Secton_2";
 
 export default function Home() {
   // const [nowData, setNowData] = useState();
@@ -90,10 +94,62 @@ export default function Home() {
   //   //   </button>
   //   // </>
   // );
+  const nowPlayingData = movieData?.nowPlaying?.response;
+  console.log(nowPlayingData);
+
+  const popularData = movieData?.popular?.response;
+  console.log(popularData);
 
   return (
     <div className="min-h-screen">
-      <Section_1 data={movieData?.nowPlaying?.response?.results[0]} />
+      <Section_1 data={nowPlayingData.results[0]} />
+
+      <div className="px-[20px] lg:px-[80px] xl:px-[200px] py-[80px] xl:py-[150px]">
+        <section>
+          <h2 className="text-2xl lg:text-3xl xl:text-4xl mb-8 font-[600]">
+            현재 상영중
+          </h2>
+
+          {/* con_wrap */}
+          <Swiper
+            spaceBetween={20}
+            slidesPerView={5}
+            breakpoints={{
+              320: {
+                spaceBetween: 10,
+                slidesPerView: 2.3,
+              },
+              640: {
+                spaceBetween: 15,
+                slidesPerView: 3.3,
+              },
+              1024: {
+                spaceBetween: 20,
+                slidesPerView: 5.3,
+              },
+            }}
+          >
+            {nowPlayingData.results.map((movie) => (
+              <SwiperSlide>
+                <Link key={movie.id} to={`/movie/${movie.id}`}>
+                  <div className="xl:h-[400px]">
+                    <img
+                      className="w-full h-full object-cover"
+                      src={W500_URL + movie.poster_path}
+                      alt="포스터"
+                    />
+                  </div>
+                  <h3 className="text-base xl:text-lg mt-[15px] font-[600]">
+                    {movie.title}
+                  </h3>
+                </Link>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </section>
+      </div>
+
+      <Section_2 data={popularData} />
     </div>
   );
 }
