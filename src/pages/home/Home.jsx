@@ -6,6 +6,8 @@ import {
   getTopRated,
   getUpcoming,
 } from "../../api/movieApi";
+import Section_1 from "./components/Section_1";
+import Loading from "../../components/Loading";
 
 export default function Home() {
   // const [nowData, setNowData] = useState();
@@ -14,6 +16,7 @@ export default function Home() {
   // const [upcomingData, setUpcomingData] = useState();
 
   const [movieData, setMovieData] = useState({});
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     (async () => {
@@ -43,12 +46,17 @@ export default function Home() {
         });
       } catch (error) {
         console.log(error);
+      } finally {
+        setLoading(false);
       }
     })();
   }, []);
 
-  console.log(movieData?.nowPlaying?.response?.results[0].title);
-  console.log(movieData?.nowPlaying?.response?.results[0].overview);
+  if (loading) {
+    return <Loading />;
+  }
+  // console.log(movieData?.nowPlaying?.response?.results[0].title);
+  // console.log(movieData?.nowPlaying?.response?.results[0].overview);
 
   // console.log(`현재 상영 영화 : ` + nowData);
   // console.log(`인기 영화 : ` + popData);
@@ -59,6 +67,7 @@ export default function Home() {
   // => try ~ catch
   // => 조건문과 비슷하게 코드나 함수에 오류나 문제점이 발생했을때 핸들링 처리 가능함
   // => if문과 차이점은 if문은 무조건 조건을 작성해야되지만 try는 조건없이 문제점을 잡아낼수 있음
+  // => finally는 try catch와 상관없이 마지막에 무조건 실행되는 코드를 작성함
 
   // const [num, setNum] = useState(0);
 
@@ -84,31 +93,7 @@ export default function Home() {
 
   return (
     <div className="min-h-screen">
-      <section
-        style={{
-          background: `#808080 url(https://image.tmdb.org/t/p/original${movieData?.nowPlaying?.response?.results[0].backdrop_path}) no-repeat center / cover`,
-        }}
-        className="h-[80vh] px-[20px] lg:px-[80px] xl:px-[200px] py-6 relative"
-      >
-        <div className="absolute bottom-[100px] left-[20px] lg:left-[80px] xl:left-[200px]">
-          <h3 className="text-[30px] lg:text-[50px] xl:text-[70px] font-semibold">
-            {movieData?.nowPlaying?.response?.results[0].title}
-          </h3>
-          <p className="text-[14px]  xl:text-[18px] opacity-70 max-w-[800px] mt-4 mb-10">
-            {movieData?.nowPlaying?.response?.results[0].overview.slice(
-              0,
-              100,
-            ) + "..."}
-          </p>
-
-          <Link
-            to={`/movie/${movieData?.nowPlaying?.response?.results[0].id}`}
-            className="px-8 py-4 bg-red-500 rounded-lg hover:bg-red-700 transition"
-          >
-            MORE VIEW &rarr;
-          </Link>
-        </div>
-      </section>
+      <Section_1 data={movieData?.nowPlaying?.response?.results[0]} />
     </div>
   );
 }
