@@ -1,15 +1,15 @@
 import { Link } from "react-router-dom";
 import { W500_URL } from "../../../constants/imgBaseUrl";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { getPopular } from "../../../api/movieApi";
 import "swiper/css";
 
 export default function Section_2({ data }) {
   return (
-    <section className="mb-[100px]">
+    <section className="mb-[100px] xl:px-[200px] py-[80px] xl:py-[150pxs">
       <h2 className="text-2xl lg:text-3xl xl:text-4xl mb-8 font-[600]">
-        현재상영중
+        인기 영화
       </h2>
-
       {/* con_wrap */}
       <Swiper
         spaceBetween={20}
