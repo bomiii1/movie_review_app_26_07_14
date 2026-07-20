@@ -102,6 +102,9 @@ export default function Home() {
 
   return (
     <div className="min-h-screen">
+      <Helmet>
+        <title>movie | home</title>
+      </Helmet>
       <Section_1 data={nowPlayingData.results[0]} />
 
       <div className="px-[20px] lg:px-[80px] xl:px-[200px] py-[80px] xl:py-[150px]">
