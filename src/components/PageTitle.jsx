@@ -1,8 +1,9 @@
 import { Helmet } from "react-helmet-async";
 
-export default function PageTitle() {
-  return;
-  <Helmet>
-    <title>`${title} | movie</title>`
-  </Helmet>;
+export default function PageTitle({ title }) {
+  return (
+    <Helmet>
+      <title>{`${title} | Movie`}</title>
+    </Helmet>
+  );
 }

@@ -22,7 +22,11 @@ const fetchMovie = async (endpoint) => {
 // const topRatedUrl = baseUrl + "movie/top_rated" + "language=en-US&page=1";
 // const upcomingUrl = baseUrl + "movie/upcoming" + "language=en-US&page=1";
 
+// 영화 리스트 요청
 export const getNowPlaying = () => fetchMovie("movie/now_playing");
 export const getPopular = () => fetchMovie("movie/popular");
 export const getTopRated = () => fetchMovie("movie/top_rated");
 export const getUpcoming = () => fetchMovie("movie/upcoming");
+
+// 영화 상세 요청
+export const getDetail = (movie_id) => fetchMovie(`movie/${movie_id}`);

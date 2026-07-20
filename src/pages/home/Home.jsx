@@ -12,6 +12,8 @@ import { W500_URL } from "../../constants/imgBaseUrl";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import Section_2 from "./components/Secton_2";
+import { Helmet } from "react-helmet-async";
+import PageTitle from "../../components/PageTitle";
 
 export default function Home() {
   // const [nowData, setNowData] = useState();
@@ -102,9 +104,7 @@ export default function Home() {
 
   return (
     <div className="min-h-screen">
-      <Helmet>
-        <title>movie | home</title>
-      </Helmet>
+      <PageTitle title="Home" />
       <Section_1 data={nowPlayingData.results[0]} />
 
       <div className="px-[20px] lg:px-[80px] xl:px-[200px] py-[80px] xl:py-[150px]">
