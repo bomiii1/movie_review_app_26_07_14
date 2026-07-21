@@ -105,7 +105,7 @@ export default function Home() {
   return (
     <div className="min-h-screen">
       <PageTitle title="Home" />
-      {/* <Section_1 data={nowPlayingData.results[0]} /> */}
+      <Section_1 data={nowPlayingData.results[0]} />
 
       <div className="px-[20px] lg:px-[80px] xl:px-[200px] py-[80px] xl:py-[150px]">
         <section>
