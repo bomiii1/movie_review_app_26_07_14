@@ -5,14 +5,16 @@ import PageTitle from "../../components/PageTitle";
 import Loading from "../../components/Loading";
 import { ORIGINAL_URL } from "../../constants/imgBaseUrl";
 import { useParams } from "react-router-dom";
+import { useScrollTop } from "../../lib/useScrollTop";
 
 export default function Movie() {
   const { id } = useParams();
   // =>url의 매개변수 값을 객체로 반환
   const [data, setData] = useState();
   const [loading, setLoading] = useState(true);
+  useScrollTop();
 
-  console.log(id);
+  // console.log(id);
 
   useEffect(() => {
     (async () => {
@@ -30,7 +32,7 @@ export default function Movie() {
   if (loading) {
     return <Loading />;
   }
-  console.log(data);
+  // console.log(data);
 
   return (
     <div className=" flex justify-center items-center">
