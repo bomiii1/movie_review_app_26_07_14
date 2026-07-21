@@ -96,16 +96,16 @@ export default function Home() {
   //   //   </button>
   //   // </>
   // );
-  const nowPlayingData = movieData?.nowPlaying?.response;
-  console.log(nowPlayingData);
+  const nowPlayingData = movieData?.nowPlaying;
+  const popularData = movieData?.popular;
 
-  const popularData = movieData?.popular?.response;
-  console.log(popularData);
+  // console.log(movieData?.nowPlaying?.results);
+  // console.log(nowPlayingData);
 
   return (
     <div className="min-h-screen">
       <PageTitle title="Home" />
-      <Section_1 data={nowPlayingData.results[0]} />
+      {/* <Section_1 data={nowPlayingData.results[0]} /> */}
 
       <div className="px-[20px] lg:px-[80px] xl:px-[200px] py-[80px] xl:py-[150px]">
         <section>
@@ -132,7 +132,7 @@ export default function Home() {
               },
             }}
           >
-            {nowPlayingData.results.map((movie) => (
+            {nowPlayingData?.results?.map((movie) => (
               <SwiperSlide>
                 <Link key={movie.id} to={`/movie/${movie.id}`}>
                   <div className="xl:h-[400px]">

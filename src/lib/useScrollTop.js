@@ -3,7 +3,8 @@ import { useLocation } from "react-router-dom";
 
 export const useScrollTop = () => {
   const { pathname } = useLocation();
-  console.log(pathname);
+  // console.log(pathname);
+  // => url 정보를 가져옴
 
   useEffect(() => {
     window.scrollTo({
@@ -11,6 +12,7 @@ export const useScrollTop = () => {
       left: 0,
       behavior: "smooth",
     });
-  });
+  }, [pathname]);
+  // =>페이지가 이동될때 pathname 이 변경되었다면 스크롤이 위로 움직임
   return;
 };

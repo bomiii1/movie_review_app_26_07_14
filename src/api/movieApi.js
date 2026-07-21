@@ -7,16 +7,24 @@ const options = {
   },
 };
 
+// const fetchMovie = async (endpoint) => {
+//   const url = baseUrl + endpoint + "?language=ko-kr&page=1";
+
+//   const response = await fetch(url, options).then((res) => res.json());
+//   // .then((json) => console.log(json))
+//   // .catch((err) => console.error(err));
+
+//   return { response };
+// };
+
 const fetchMovie = async (endpoint) => {
-  const url = baseUrl + endpoint + "?language=ko-kr&page=1";
+  const url = new URL(baseUrl + endpoint);
+  url.searchParams.set("language", "ko-kr");
 
-  const response = await fetch(url, options).then((res) => res.json());
-  // .then((json) => console.log(json))
-  // .catch((err) => console.error(err));
+  const response = await fetch(url, options);
 
-  return { response };
+  return response.json();
 };
-
 // const nowPlayingUrl = baseUrl + "movie/now_playing" + "language=en-US&page=1";
 // const popularUrl = baseUrl + "movie/popular" + "language=en-US&page=1";
 // const topRatedUrl = baseUrl + "movie/top_rated" + "language=en-US&page=1";
@@ -30,3 +38,6 @@ export const getUpcoming = () => fetchMovie("movie/upcoming");
 
 // 영화 상세 요청
 export const getDetail = (movie_id) => fetchMovie(`movie/${movie_id}`);
+
+export const getSearch = (keyword) =>
+  fetchMovie(`search/movie?query=${keyword}`);
