@@ -4,7 +4,7 @@ import tailwindcss from "@tailwindcss/vite";
 
 export default defineConfig({
   plugins: [react(), tailwindcss()],
-  base: "",
+  base: "/movie_review_app_26_07_14/",
 });
 
-아이디 / github.io / 레포명;
+// 아이디 / github.io / 레포명;
