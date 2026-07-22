@@ -98,6 +98,7 @@ export default function Home() {
   // );
   const nowPlayingData = movieData?.nowPlaying;
   const popularData = movieData?.popular;
+  // const popularData = movieData?.top_rated;
 
   // console.log(movieData?.nowPlaying?.results);
   // console.log(nowPlayingData);
@@ -105,7 +106,7 @@ export default function Home() {
   return (
     <div className="min-h-screen">
       <PageTitle title="Home" />
-      <Section_1 data={nowPlayingData.results[0]} />
+      <Section_1 data={nowPlayingData.results[1]} />
 
       <div className="px-[20px] lg:px-[80px] xl:px-[200px] py-[80px] xl:py-[150px]">
         <section>
